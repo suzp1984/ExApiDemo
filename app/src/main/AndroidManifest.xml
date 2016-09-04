@@ -9,26 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".MainActivity"
-            android:label="app/test"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".layout.SlidingPanelLayoutTextViewSampleActivity"
-            android:label="layout/slidingPanel"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".ExApiDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +16,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".layout.SlidingPanelLayoutTextViewSampleActivity"
+            android:exported="false"
+            android:label="layout/slidingPanel">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".graphics.StarsActivity"
+            android:exported="false"
+            android:label="graphics/stars" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
