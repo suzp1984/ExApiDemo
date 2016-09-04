@@ -15,6 +15,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,12 +41,17 @@ public class ExApiDemoActivity extends AppCompatActivity {
             path = "";
         }
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(Objects.equals(path, "") ? "ExApiDemos" : path);
+        }
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(new ApiAdapter(getData(path)));
+        mRecyclerView.addItemDecoration(new DividerDecoration(this));
     }
 
     protected List<Map<String, Object>> getData(String prefix) {
-        List<Map<String, Object>> myData = new ArrayList<Map<String, Object>>();
+        List<Map<String, Object>> myData = new ArrayList<>();
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(CUSTOME_CATEGORY);
