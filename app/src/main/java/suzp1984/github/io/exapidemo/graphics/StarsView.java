@@ -3,12 +3,15 @@ package suzp1984.github.io.exapidemo.graphics;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import java.util.Random;
 
 /**
  * Created by jacobsu on 9/4/16.
@@ -18,7 +21,9 @@ public class StarsView extends View {
     private static final String TAG = "StarsView";
 
     private Paint mStarPaint;
+    private Paint mBackgroundPaint;
     private Path  mPath;
+    private Random mRandom;
 
     public StarsView(Context context) {
         super(context);
@@ -65,34 +70,29 @@ public class StarsView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        // super.onDraw(canvas);
         Log.e(TAG, "onDraw");
 
-        canvas.save();
-        canvas.translate(200, 200);
-        // canvas.rotate(45f);
-        // canvas.scale(200, 200);
+        mBackgroundPaint.setShader(new LinearGradient(0, 0, 0, getHeight(),
+                Color.BLACK, Color.WHITE,
+                Shader.TileMode.CLAMP));
 
-        // canvas.drawRect(0, 0, 1, 1, mStarPaint);
-        mPath.reset();
-        mPath.moveTo(0, 0);
-        mPath.lineTo(100, 100);
-        // mPath.moveTo(3, 2);
-        mPath.lineTo(100, 0);
-        // mPath.moveTo(3, 3);
-        mPath.lineTo(0, 0);
-        mPath.close();
+        canvas.drawPaint(mBackgroundPaint);
 
-        mStarPaint.setStrokeWidth(1f);
-        mStarPaint.setDither(false);
+        for (int i = 0; i < 100; i++) {
+            float x = mRandom.nextFloat() * getMeasuredWidth();
+            float y = mRandom.nextFloat() * getMeasuredHeight() * 0.7f;
+            float r = mRandom.nextFloat() * 10 + 10;
+            float a = mRandom.nextFloat() * 360;
 
-        canvas.drawPath(mPath, mStarPaint);
+            drawStar(canvas, x, y, r, a);
+        }
 
-        canvas.restore();
-        // drawStar(canvas, 100, 100, 100, 0);
     }
 
     private void init() {
+        // must use software layer to render
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
         mStarPaint = new Paint();
         mStarPaint.setAntiAlias(true);
         mStarPaint.setStrokeWidth(1f);
@@ -104,30 +104,40 @@ public class StarsView extends View {
         mStarPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         mPath = new Path();
+        mRandom = new Random(System.currentTimeMillis());
 
+        mBackgroundPaint = new Paint();
+        mBackgroundPaint.setStyle(Paint.Style.FILL);
     }
 
-    private void drawStar(Canvas canvas, int x, int y, int r, int a) {
+    private void drawStar(Canvas canvas, float x, float y, float r, float a) {
+        int count = canvas.getSaveCount();
         canvas.save();
 
         canvas.translate(x, y);
-        // canvas.scale(r, r);
+        canvas.scale(r, r);
+        canvas.rotate(a);
 
-        drawStandardStar(canvas);
+        drawNormalStar();
+
         canvas.drawPath(mPath, mStarPaint);
 
-        canvas.restore();
+        canvas.restoreToCount(count);
     }
 
-    private void drawStandardStar(Canvas canvas) {
+    private void drawNormalStar() {
         mPath.reset();
-        mPath.moveTo(0, 0);
-        for (int i = 0; i < 5; i++) {
-            mPath.lineTo((float)Math.cos((18 + i * 72)/180 * Math.PI) * 200f,
-                    (float)-Math.sin((18 + i * 72)/180 * Math.PI) * 200f);
 
-            mPath.lineTo((float)Math.cos((54 + i * 72)/180 * Math.PI) * 0.5f * 200f,
-                    (float)-Math.sin((54 + i * 72)/180 * Math.PI) * 0.5f * 200f);
+        mPath.moveTo((float)Math.cos(Math.toRadians(18)), -(float)Math.sin(Math.toRadians(18)));
+        for (int i = 0; i < 5; i++) {
+            float x1 = (float)Math.cos(Math.toRadians(18 + i * 72));
+            float y1 = -(float)Math.sin(Math.toRadians(18 + i * 72));
+
+            float x2 = (float)Math.cos(Math.toRadians(54 + i * 72)) * 0.5f;
+            float y2 = -(float)Math.sin(Math.toRadians(54 + i * 72)) * 0.5f;
+
+            mPath.lineTo(x1, y1);
+            mPath.lineTo(x2, y2);
         }
 
         mPath.close();
