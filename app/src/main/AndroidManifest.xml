@@ -8,7 +8,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".ExApiDemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,7 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".layout.SlidingPanelLayoutTextViewSampleActivity"
             android:exported="false"
@@ -27,18 +25,26 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.StarsActivity"
             android:exported="false"
-            android:label="graphics/stars" >
+            android:label="graphics/stars">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
+        <activity android:name=".graphics.PixelArtActivity"
+            android:exported="false"
+            android:label="graphics/pixelsArt"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
