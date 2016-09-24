@@ -35,10 +35,19 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-        <activity android:name=".graphics.PixelArtActivity"
+        <activity
+            android:name=".graphics.PixelArtActivity"
             android:exported="false"
-            android:label="graphics/pixelsArt"
-            >
+            android:label="graphics/pixelsArt">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".app.fragments.FragmentInRecyclerActivity"
+            android:exported="false"
+            android:label="app/fragments/Fragments in RecyclerView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
