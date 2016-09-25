@@ -6,10 +6,38 @@
     android:layout_height="match_parent"
     tools:context="suzp1984.github.io.exapidemo.app.fragments.FragmentInRecyclerActivity">
 
+
+    <LinearLayout
+        android:id="@+id/comments_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true" >
+
+
+        <TextView
+            android:id="@+id/viewholder_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/fragments_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/comments_container">
 
     </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package suzp1984.github.io.exapidemo.app.fragments;
 
+import android.database.Observable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,9 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
 
     private final FragmentManager mFragmentManager;
 
+    private final FragmentAdapterDataObservable mFramgentAdapterObservable =
+                                            new FragmentAdapterDataObservable();
+
     public NumFragmentAdapter(FragmentManager manager) {
         mFragmentManager = manager;
     }
@@ -41,6 +45,9 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
         View fragment_container = view.findViewWithTag("fragment_container");
         fragment_container.setId(View.generateViewId());
 
+        notifyViewHolderCreate(viewType);
+        notifyViewHolderCountChanged(mViewHolderCount);
+
         return new NumberViewHolder(view);
     }
 
@@ -55,8 +62,16 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
             mNumFragments[position] = numberFragment;
         }
 
-        if (!isFragmentAttached(numberFragment)) {
-            mFragmentManager.beginTransaction().add(holder.itemView.getId(), numberFragment).commit();
+//        if (!isFragmentAttached(numberFragment)) {
+//            mFragmentManager.beginTransaction().add(holder.itemView.getId(), numberFragment).commit();
+//        }
+
+        mFragmentManager.beginTransaction().add(holder.itemView.getId(), numberFragment).commit();
+
+        if (mFragmentManager.getFragments() == null) {
+            notifyAttachedFragmentChanged(0);
+        } else {
+            notifyAttachedFragmentChanged(mFragmentManager.getFragments().size());
         }
     }
 
@@ -70,6 +85,26 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
         return position;
     }
 
+    public void registerFragmentDataObserver(FragmentAdapterDataObserver observer) {
+        mFramgentAdapterObservable.registerObserver(observer);
+    }
+
+    public void unregisterFragmentDataObserver(FragmentAdapterDataObserver observer) {
+        mFramgentAdapterObservable.unregisterObserver(observer);
+    }
+
+    private void notifyViewHolderCreate(int type) {
+        mFramgentAdapterObservable.notifyViewHolderCreate(type);
+    }
+
+    private void notifyViewHolderCountChanged(int count) {
+        mFramgentAdapterObservable.notifyViewHolderCountChanged(count);
+    }
+
+    private void notifyAttachedFragmentChanged(int count) {
+        mFramgentAdapterObservable.notifyAttachedFragmentCountChanged(count);
+    }
+
     private boolean isFragmentAttached(Fragment fragment) {
         return mFragmentManager.getFragments() != null &&
                 mFragmentManager.getFragments().contains(fragment);
@@ -80,5 +115,46 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
         public NumberViewHolder(View itemView) {
             super(itemView);
         }
+    }
+
+    public static abstract class FragmentAdapterDataObserver {
+        public void onViewHolderCreate(int type) {
+
+        }
+
+        public void onViewHolderCountChanged(int count) {
+
+        }
+
+        public void onAttachedFragmentCountChanged(int count) {
+
+        }
+    }
+
+    public static class FragmentAdapterDataObservable extends
+                                                    Observable<FragmentAdapterDataObserver> {
+        public boolean hasObservers() {
+            return !mObservers.isEmpty();
+        }
+
+        public void notifyViewHolderCreate(int type) {
+            for (int i = mObservers.size() - 1; i >= 0; i--) {
+                mObservers.get(i).onViewHolderCreate(type);
+            }
+        }
+
+        public void notifyViewHolderCountChanged(int count) {
+
+            for (int i = mObservers.size() - 1; i >= 0; i--) {
+                mObservers.get(i).onViewHolderCountChanged(count);
+            }
+        }
+
+        public void notifyAttachedFragmentCountChanged(int count) {
+            for (int i = mObservers.size() - 1; i >= 0; i--) {
+                mObservers.get(i).onAttachedFragmentCountChanged(count);
+            }
+        }
+
     }
 }
