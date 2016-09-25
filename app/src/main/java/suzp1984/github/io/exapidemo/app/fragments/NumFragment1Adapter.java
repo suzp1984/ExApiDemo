@@ -15,9 +15,9 @@ import suzp1984.github.io.exapidemo.R;
  * Created by jacobsu on 9/24/16.
  */
 
-public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.NumberViewHolder> {
+public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapter.NumberViewHolder> {
 
-    private final String TAG = NumFragmentAdapter.class.getName();
+    private final String TAG = NumFragment1Adapter.class.getName();
 
     private final int COUNT = 100;
     private final NumberFragment[] mNumFragments = new NumberFragment[COUNT];
@@ -29,7 +29,7 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
     private final FragmentAdapterDataObservable mFramgentAdapterObservable =
                                             new FragmentAdapterDataObservable();
 
-    public NumFragmentAdapter(FragmentManager manager) {
+    public NumFragment1Adapter(FragmentManager manager) {
         mFragmentManager = manager;
     }
 

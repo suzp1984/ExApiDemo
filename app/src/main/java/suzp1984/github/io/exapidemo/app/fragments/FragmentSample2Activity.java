@@ -1,26 +1,20 @@
 package suzp1984.github.io.exapidemo.app.fragments;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
 /**
  * Created by jacobsu on 9/25/16.
  */
 
-public class FragmentSample1Activity extends FragmentInRecyclerActivity {
-
+public class FragmentSample2Activity extends FragmentInRecyclerActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     protected void setupRecycler() {
-        NumFragment1Adapter adapter = new NumFragment1Adapter(getSupportFragmentManager());
+        NumFragment2Adapter adapter = new NumFragment2Adapter(getSupportFragmentManager());
 
         mRecycler.setAdapter(adapter);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter.registerFragmentDataObserver(new NumFragment1Adapter.FragmentAdapterDataObserver() {
+        adapter.registerFragmentDataObserver(new NumFragment2Adapter.FragmentAdapterDataObserver() {
             @Override
             public void onViewHolderCreate(int type) {
                 super.onViewHolderCreate(type);

@@ -66,4 +66,7 @@ public class NumberFragment extends Fragment {
 
     }
 
+    public String getNumber() {
+        return mNumber;
+    }
 }
