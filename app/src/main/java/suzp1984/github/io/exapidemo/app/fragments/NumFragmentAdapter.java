@@ -62,11 +62,11 @@ public class NumFragmentAdapter extends RecyclerView.Adapter<NumFragmentAdapter.
             mNumFragments[position] = numberFragment;
         }
 
-//        if (!isFragmentAttached(numberFragment)) {
-//            mFragmentManager.beginTransaction().add(holder.itemView.getId(), numberFragment).commit();
-//        }
+        if (!isFragmentAttached(numberFragment)) {
+            mFragmentManager.beginTransaction().replace(holder.itemView.getId(), numberFragment).commit();
+        }
 
-        mFragmentManager.beginTransaction().add(holder.itemView.getId(), numberFragment).commit();
+//         mFragmentManager.beginTransaction().replace(holder.itemView.getId(), numberFragment).commit();
 
         if (mFragmentManager.getFragments() == null) {
             notifyAttachedFragmentChanged(0);

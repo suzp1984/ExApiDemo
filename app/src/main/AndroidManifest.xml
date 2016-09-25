@@ -3,6 +3,7 @@
     package="suzp1984.github.io.exapidemo">
 
     <application
+        android:name=".ExApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -45,9 +46,9 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.fragments.FragmentInRecyclerActivity"
+        <activity android:name=".app.fragments.FragmentSample1Activity"
             android:exported="false"
-            android:label="app/fragments/Fragments in RecyclerView">
+            android:label="app/fragments/Fragments 1 in RecyclerView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
