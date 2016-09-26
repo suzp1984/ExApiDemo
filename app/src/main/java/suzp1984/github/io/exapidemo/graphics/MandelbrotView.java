@@ -68,8 +68,8 @@ public class MandelbrotView extends View {
                 int k = 0;
 
                 for (k = 1; k < 256; k++) {
-                    float a = (float) (x*x - y*y + (float)(i - w * 0.75)/160.0);
-                    y = (float) (2*x*y + (j - w*0.5)/160.0);
+                    float a = (float) (x*x - y*y + (float)(i - w * 0.75)*2/(float)w);
+                    y = (float) (2*x*y + (j - w*0.5)*2/(float)w);
                     x = a;
 
                     if ((x*x + y*y) > 4) {
