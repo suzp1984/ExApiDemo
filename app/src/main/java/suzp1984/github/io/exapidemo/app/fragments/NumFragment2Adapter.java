@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import java.util.LinkedList;
+
 import suzp1984.github.io.exapidemo.R;
 
 /**
@@ -22,7 +24,6 @@ public class NumFragment2Adapter extends RecyclerView.Adapter<NumFragment2Adapte
 
     private final FragmentManager mFragmentManager;
     private final int COUNT = 100;
-    private final NumberFragment[] mNumFragments = new NumberFragment[COUNT];
 
     private int mViewHolderCount = 0;
     private final NumFragment2Adapter.FragmentAdapterDataObservable mFramgentAdapterObservable =
@@ -30,10 +31,6 @@ public class NumFragment2Adapter extends RecyclerView.Adapter<NumFragment2Adapte
 
     public NumFragment2Adapter(FragmentManager manager) {
         mFragmentManager = manager;
-
-        for(int i = 0; i < COUNT; i++) {
-            mNumFragments[i] =  NumberFragment.newInstance(String.valueOf(i));
-        }
     }
 
     @Override
@@ -51,9 +48,13 @@ public class NumFragment2Adapter extends RecyclerView.Adapter<NumFragment2Adapte
         innerContainer.setLayoutParams(new FrameLayout.LayoutParams(
                                 ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.MATCH_PARENT));
+
+        innerContainer.setMinimumHeight(100);
         innerContainer.setId(View.generateViewId());
 
         rootContainer.addView(innerContainer);
+        NumberFragment fragment = new NumberFragment();
+        view.setTag(fragment);
 
         notifyViewHolderCreate(viewType);
         notifyViewHolderCountChanged(mViewHolderCount);
@@ -63,30 +64,17 @@ public class NumFragment2Adapter extends RecyclerView.Adapter<NumFragment2Adapte
 
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
-        NumberFragment numberFragment = mNumFragments[position];
 
-//        if (!isFragmentInManager(numberFragment)) {
-//            mFragmentManager.beginTransaction().replace(holder.fragmentContainer.getId(), numberFragment).commitNow();
-//        }
-        // mFragmentManager.executePendingTransactions();
+        NumberFragment numberFragment = (NumberFragment) holder.itemView.getTag();
+        numberFragment.setNumber(String.valueOf(position));
 
-//        if (numberFragment.isAdded()) {
-//            mFragmentManager.beginTransaction().attach(numberFragment).commit();
-//        } else {
-//            mFragmentManager.beginTransaction().replace(holder.fragmentContainer.getId(), numberFragment).commit();
-//        }
-//        mFragmentManager.executePendingTransactions();
         Log.e(TAG, "fragment: #" + numberFragment.getNumber() + " isAdded " + numberFragment.isAdded());
         Log.e(TAG, "fragment: #" + numberFragment.getNumber() + " isDetached " + numberFragment.isDetached());
         Log.e(TAG, "fragment #" + numberFragment.getNumber() + " isInLayout " + numberFragment.isInLayout());
 
         if (!numberFragment.isAdded()) {
             mFragmentManager.beginTransaction().replace(holder.fragmentContainer.getId(), numberFragment).commit();
-        } else if (numberFragment.isDetached()) {
-            // mFragmentManager.beginTransaction().attach(numberFragment).commit();
         }
-
-        holder.fragmentContainer.setTag(numberFragment);
 
         if (mFragmentManager.getFragments() == null) {
             notifyAttachedFragmentChanged(0);
@@ -100,27 +88,22 @@ public class NumFragment2Adapter extends RecyclerView.Adapter<NumFragment2Adapte
         return COUNT;
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
+//    @Override
+//    public int getItemViewType(int position) {
+//        return position;
+//    }
 
     @Override
     public void onViewRecycled(NumberViewHolder viewHolder) {
         super.onViewRecycled(viewHolder);
 
-        if (viewHolder.fragmentContainer.getTag() != null &&
-                viewHolder.fragmentContainer.getTag() instanceof NumberFragment) {
-            NumberFragment fragment = (NumberFragment) viewHolder.fragmentContainer.getTag();
+        if (viewHolder.itemView.getTag() != null &&
+                viewHolder.itemView.getTag() instanceof NumberFragment) {
+            NumberFragment fragment = (NumberFragment) viewHolder.itemView.getTag();
             Log.e(TAG, "&&& onViewRecycled: " + fragment.getNumber());
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isAdded " + fragment.isAdded());
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isDetached " + fragment.isDetached());
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isInLayout " + fragment.isInLayout());
-            // mFragmentManager.beginTransaction().detach(fragment).commit();
-//            if (fragment.isAdded()) {
-//                mFragmentManager.beginTransaction().detach(fragment).commit();
-//                mFragmentManager.executePendingTransactions();
-//            }
         }
 
     }

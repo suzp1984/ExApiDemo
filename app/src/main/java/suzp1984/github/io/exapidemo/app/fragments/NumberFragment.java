@@ -20,6 +20,8 @@ public class NumberFragment extends Fragment {
 
     private String mNumber;
 
+    private TextView mTextView;
+
     public NumberFragment() {
         // Required empty public constructor
     }
@@ -35,6 +37,13 @@ public class NumberFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+    }
+
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -48,16 +57,32 @@ public class NumberFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_number, container, false);
 
-        TextView textView = (TextView) view.findViewById(R.id.number);
-        textView.setText(mNumber);
+        mTextView = (TextView) view.findViewById(R.id.number);
+        mTextView.setText(mNumber);
 
         return view;
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mTextView.setText(mNumber);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     @Override
@@ -68,5 +93,13 @@ public class NumberFragment extends Fragment {
 
     public String getNumber() {
         return mNumber;
+    }
+
+    public void setNumber(String s) {
+        mNumber = s;
+
+        if (isResumed()) {
+            mTextView.setText(mNumber);
+        }
     }
 }

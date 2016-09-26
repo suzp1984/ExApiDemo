@@ -31,6 +31,10 @@ public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapte
 
     public NumFragment1Adapter(FragmentManager manager) {
         mFragmentManager = manager;
+
+        for (int i = 0; i < COUNT; i++) {
+            mNumFragments[i] = NumberFragment.newInstance(String.valueOf(i));
+        }
     }
 
     @Override
@@ -44,6 +48,10 @@ public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapte
 
         View fragment_container = view.findViewWithTag("fragment_container");
         fragment_container.setId(View.generateViewId());
+        // fragment_container.setMinimumHeight(50);
+        NumberFragment numberFragment = mNumFragments[viewType];
+
+        view.setTag(numberFragment);
 
         notifyViewHolderCreate(viewType);
         notifyViewHolderCountChanged(mViewHolderCount);
@@ -55,18 +63,12 @@ public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapte
     public void onBindViewHolder(NumberViewHolder holder, int position) {
         Log.e(TAG, "--- onBindViewHolder: " + position);
 
-        NumberFragment numberFragment = mNumFragments[position];
+        NumberFragment numberFragment = (NumberFragment) holder.itemView.getTag();
 
-        if (numberFragment == null) {
-            numberFragment = NumberFragment.newInstance(String.valueOf(position));
-            mNumFragments[position] = numberFragment;
-        }
+        if (!numberFragment.isAdded()) {
 
-        if (!isFragmentAttached(numberFragment)) {
             mFragmentManager.beginTransaction().replace(holder.itemView.getId(), numberFragment).commit();
         }
-
-//         mFragmentManager.beginTransaction().replace(holder.itemView.getId(), numberFragment).commit();
 
         if (mFragmentManager.getFragments() == null) {
             notifyAttachedFragmentChanged(0);
@@ -105,7 +107,7 @@ public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapte
         mFramgentAdapterObservable.notifyAttachedFragmentCountChanged(count);
     }
 
-    private boolean isFragmentAttached(Fragment fragment) {
+    private boolean isFragmentAdded(Fragment fragment) {
         return mFragmentManager.getFragments() != null &&
                 mFragmentManager.getFragments().contains(fragment);
     }
