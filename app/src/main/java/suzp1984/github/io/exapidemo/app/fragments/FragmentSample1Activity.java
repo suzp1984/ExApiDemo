@@ -2,6 +2,8 @@ package suzp1984.github.io.exapidemo.app.fragments;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 /**
  * Created by jacobsu on 9/25/16.
@@ -9,16 +11,35 @@ import android.support.v7.widget.LinearLayoutManager;
 
 public class FragmentSample1Activity extends FragmentInRecyclerActivity {
 
+    private static final String TAG = FragmentSample1Activity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     protected void setupRecycler() {
-        NumFragment1Adapter adapter = new NumFragment1Adapter(getSupportFragmentManager());
+        final NumFragment1Adapter adapter = new NumFragment1Adapter(getSupportFragmentManager());
 
         mRecycler.setAdapter(adapter);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        mRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                Log.e(TAG, "onScrolled: " + dx + ", " + dy);
+                Log.e(TAG, "scroll extent: " + mRecycler.computeVerticalScrollExtent() +
+                            ", offet: " + mRecycler.computeVerticalScrollOffset() +
+                            ", range: " + mRecycler.computeVerticalScrollRange());
+            }
+        });
 
         adapter.registerFragmentDataObserver(new NumFragment1Adapter.FragmentAdapterDataObserver() {
             @Override

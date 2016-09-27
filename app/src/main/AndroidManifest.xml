@@ -87,7 +87,17 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.design.NavgationViewActivity"></activity>
+
+        <activity
+            android:name=".app.design.NavgationViewActivity"
+            android:exported="false"
+            android:label="app/design/navigation view" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
