@@ -67,8 +67,8 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.fragments.FragmentSample2Activity"
+        <activity
+            android:name=".app.fragments.FragmentSample2Activity"
             android:exported="false"
             android:label="app/fragments/Fragments 2 in RecyclerView">
             <intent-filter>
@@ -77,8 +77,8 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.fragments.FragmentSample3Activity"
+        <activity
+            android:name=".app.fragments.FragmentSample3Activity"
             android:exported="false"
             android:label="app/fragments/Fragments 3 in RecyclerView">
             <intent-filter>
@@ -87,7 +87,7 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".app.design.NavgationViewActivity"></activity>
     </application>
 
 </manifest>
