@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 /**
  * Created by jacobsu on 9/25/16.
@@ -19,6 +20,9 @@ public class FragmentSample1Activity extends FragmentInRecyclerActivity {
     }
 
     protected void setupRecycler() {
+        mRemove.setVisibility(View.GONE);
+        mAdd.setVisibility(View.GONE);
+
         final NumFragment1Adapter adapter = new NumFragment1Adapter(getSupportFragmentManager());
 
         mRecycler.setAdapter(adapter);
@@ -41,7 +45,7 @@ public class FragmentSample1Activity extends FragmentInRecyclerActivity {
             }
         });
 
-        adapter.registerFragmentDataObserver(new NumFragment1Adapter.FragmentAdapterDataObserver() {
+        adapter.registerFragmentDataObserver(new NumFragmentBaseAdapter.FragmentAdapterDataObserver() {
             @Override
             public void onViewHolderCreate(int type) {
                 super.onViewHolderCreate(type);

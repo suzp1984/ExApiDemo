@@ -15,7 +15,7 @@ import suzp1984.github.io.exapidemo.R;
  * Created by suzhenxi on 9/26/2016.
  */
 
-public class NumFragment3Adapter extends RecyclerView.Adapter<NumFragment3Adapter.NumberViewHolder> {
+public class NumFragment3Adapter extends NumFragmentBaseAdapter {
 
     private final String TAG = NumFragment3Adapter.class.getName();
 
@@ -23,8 +23,6 @@ public class NumFragment3Adapter extends RecyclerView.Adapter<NumFragment3Adapte
     private final int COUNT = 100;
 
     private int mViewHolderCount = 0;
-    private final NumFragment3Adapter.FragmentAdapterDataObservable mFramgentAdapterObservable =
-            new NumFragment3Adapter.FragmentAdapterDataObservable();
 
     public NumFragment3Adapter(FragmentManager manager) {
         mFragmentManager = manager;
@@ -96,78 +94,5 @@ public class NumFragment3Adapter extends RecyclerView.Adapter<NumFragment3Adapte
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isDetached " + fragment.isDetached());
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isInLayout " + fragment.isInLayout());
         }
-
-    }
-
-    public void registerFragmentDataObserver(NumFragment3Adapter.FragmentAdapterDataObserver observer) {
-        mFramgentAdapterObservable.registerObserver(observer);
-    }
-
-    public void unregisterFragmentDataObserver(NumFragment3Adapter.FragmentAdapterDataObserver observer) {
-        mFramgentAdapterObservable.unregisterObserver(observer);
-    }
-
-    private void notifyViewHolderCreate(int type) {
-        mFramgentAdapterObservable.notifyViewHolderCreate(type);
-    }
-
-    private void notifyViewHolderCountChanged(int count) {
-        mFramgentAdapterObservable.notifyViewHolderCountChanged(count);
-    }
-
-    private void notifyAttachedFragmentChanged(int count) {
-        mFramgentAdapterObservable.notifyAttachedFragmentCountChanged(count);
-    }
-
-    public static class NumberViewHolder extends RecyclerView.ViewHolder {
-
-        FrameLayout fragmentContainer;
-
-        public NumberViewHolder(View itemView, FrameLayout fragmentContainer) {
-            super(itemView);
-
-            this.fragmentContainer = fragmentContainer;
-        }
-    }
-
-    public static abstract class FragmentAdapterDataObserver {
-        public void onViewHolderCreate(int type) {
-
-        }
-
-        public void onViewHolderCountChanged(int count) {
-
-        }
-
-        public void onAttachedFragmentCountChanged(int count) {
-
-        }
-    }
-
-    public static class FragmentAdapterDataObservable extends
-            Observable<NumFragment3Adapter.FragmentAdapterDataObserver> {
-        public boolean hasObservers() {
-            return !mObservers.isEmpty();
-        }
-
-        public void notifyViewHolderCreate(int type) {
-            for (int i = mObservers.size() - 1; i >= 0; i--) {
-                mObservers.get(i).onViewHolderCreate(type);
-            }
-        }
-
-        public void notifyViewHolderCountChanged(int count) {
-
-            for (int i = mObservers.size() - 1; i >= 0; i--) {
-                mObservers.get(i).onViewHolderCountChanged(count);
-            }
-        }
-
-        public void notifyAttachedFragmentCountChanged(int count) {
-            for (int i = mObservers.size() - 1; i >= 0; i--) {
-                mObservers.get(i).onAttachedFragmentCountChanged(count);
-            }
-        }
-
     }
 }

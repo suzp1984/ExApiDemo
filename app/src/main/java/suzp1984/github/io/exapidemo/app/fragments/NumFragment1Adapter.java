@@ -1,14 +1,11 @@
 package suzp1984.github.io.exapidemo.app.fragments;
 
-import android.database.Observable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import suzp1984.github.io.exapidemo.R;
 
@@ -16,7 +13,7 @@ import suzp1984.github.io.exapidemo.R;
  * Created by jacobsu on 9/24/16.
  */
 
-public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapter.NumberViewHolder> {
+public class NumFragment1Adapter extends NumFragmentBaseAdapter {
 
     private final String TAG = NumFragment1Adapter.class.getName();
 
@@ -26,9 +23,6 @@ public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapte
     private int mViewHolderCount = 0;
 
     private final FragmentManager mFragmentManager;
-
-    private final FragmentAdapterDataObservable mFramgentAdapterObservable =
-                                            new FragmentAdapterDataObservable();
 
     public NumFragment1Adapter(FragmentManager manager) {
         mFragmentManager = manager;
@@ -99,78 +93,5 @@ public class NumFragment1Adapter extends RecyclerView.Adapter<NumFragment1Adapte
         Log.e(TAG, "--- onFailedTo Recycler: " + holder.isRecyclable());
 
         return super.onFailedToRecycleView(holder);
-    }
-
-    public void registerFragmentDataObserver(FragmentAdapterDataObserver observer) {
-        mFramgentAdapterObservable.registerObserver(observer);
-    }
-
-    public void unregisterFragmentDataObserver(FragmentAdapterDataObserver observer) {
-        mFramgentAdapterObservable.unregisterObserver(observer);
-    }
-
-    private void notifyViewHolderCreate(int type) {
-        mFramgentAdapterObservable.notifyViewHolderCreate(type);
-    }
-
-    private void notifyViewHolderCountChanged(int count) {
-        mFramgentAdapterObservable.notifyViewHolderCountChanged(count);
-    }
-
-    private void notifyAttachedFragmentChanged(int count) {
-        mFramgentAdapterObservable.notifyAttachedFragmentCountChanged(count);
-    }
-
-    private boolean isFragmentAdded(Fragment fragment) {
-        return mFragmentManager.getFragments() != null &&
-                mFragmentManager.getFragments().contains(fragment);
-    }
-
-    public static class NumberViewHolder extends RecyclerView.ViewHolder {
-
-        public NumberViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
-    public static abstract class FragmentAdapterDataObserver {
-        public void onViewHolderCreate(int type) {
-
-        }
-
-        public void onViewHolderCountChanged(int count) {
-
-        }
-
-        public void onAttachedFragmentCountChanged(int count) {
-
-        }
-    }
-
-    public static class FragmentAdapterDataObservable extends
-                                                    Observable<FragmentAdapterDataObserver> {
-        public boolean hasObservers() {
-            return !mObservers.isEmpty();
-        }
-
-        public void notifyViewHolderCreate(int type) {
-            for (int i = mObservers.size() - 1; i >= 0; i--) {
-                mObservers.get(i).onViewHolderCreate(type);
-            }
-        }
-
-        public void notifyViewHolderCountChanged(int count) {
-
-            for (int i = mObservers.size() - 1; i >= 0; i--) {
-                mObservers.get(i).onViewHolderCountChanged(count);
-            }
-        }
-
-        public void notifyAttachedFragmentCountChanged(int count) {
-            for (int i = mObservers.size() - 1; i >= 0; i--) {
-                mObservers.get(i).onAttachedFragmentCountChanged(count);
-            }
-        }
-
     }
 }
