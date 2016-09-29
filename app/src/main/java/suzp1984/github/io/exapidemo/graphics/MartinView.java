@@ -3,6 +3,7 @@ package suzp1984.github.io.exapidemo.graphics;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -60,7 +61,12 @@ public class MartinView extends View {
         int[][] g = new int[h][w];
         int[][] b = new int[h][w];
 
+        for (int j = 0; j < h; j++)
+            for (int i = 0; i < w; i++) {
+                mBitmap.setPixel(i, j, Color.rgb(martin_r(r, i, j), martin_g(g, i, j), martin_b(b, i, j)));
+            }
 
+        canvas.drawBitmap(mBitmap, 0, 0, mPaint);
     }
 
     private int martin_r(int[][] r, int w, int h) {
