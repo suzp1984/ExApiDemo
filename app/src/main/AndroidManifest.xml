@@ -102,7 +102,8 @@
         <activity
             android:name=".app.design.NavgationViewActivity"
             android:exported="false"
-            android:label="app/design/navigation view" >
+            android:label="app/design/navigation view"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
