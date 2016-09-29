@@ -91,6 +91,17 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".graphics.PhagocyteViewActivity"
+            android:exported="false"
+            android:label="graphics/Phagocyte">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".app.fragments.FragmentSample1Activity"
             android:exported="false"
             android:label="app/fragments/Fragments 1 in RecyclerView">
