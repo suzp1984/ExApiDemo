@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context="suzp1984.github.io.exapidemo.app.design.NavgationViewActivity">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello World" />
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"

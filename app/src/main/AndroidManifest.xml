@@ -89,6 +89,17 @@
         </activity>
 
         <activity
+            android:name=".app.fragments.FragmentSample4Activity"
+            android:exported="false"
+            android:label="app/fragments/Fragments 4 in RecyclerView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".app.design.NavgationViewActivity"
             android:exported="false"
             android:label="app/design/navigation view" >

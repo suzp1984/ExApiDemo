@@ -1,6 +1,7 @@
 package suzp1984.github.io.exapidemo.app.fragments;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 /**
  * Created by suzhenxi on 9/26/2016.
@@ -9,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 public class FragmentSample3Activity extends FragmentInRecyclerActivity {
     @Override
     protected void setupRecycler() {
+        mRemove.setVisibility(View.GONE);
+        mAdd.setVisibility(View.GONE);
+
         NumFragment3Adapter adapter = new NumFragment3Adapter(getSupportFragmentManager());
 
         mRecycler.setAdapter(adapter);
