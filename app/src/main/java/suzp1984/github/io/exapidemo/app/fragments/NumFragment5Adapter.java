@@ -1,6 +1,7 @@
 package suzp1984.github.io.exapidemo.app.fragments;
 
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +14,21 @@ import java.util.List;
 import suzp1984.github.io.exapidemo.R;
 
 /**
- * Created by suzhenxi on 9/29/2016.
+ * Created by suzhenxi on 9/30/2016.
  */
 
-public class NumFragment4Adapter extends NumFragmentBaseAdapter {
+public class NumFragment5Adapter extends NumFragmentBaseAdapter {
 
-    private final String TAG = NumFragment4Adapter.class.getName();
+    private final String TAG = NumFragment5Adapter.class.getName();
 
     private final FragmentManager mFragmentManager;
     private final int COUNT = 100;
     private final List<NumberFragment> mNumFragments = new LinkedList<>();
+    private final List<NumberFragment> mRemoveFragments = new LinkedList<>();
 
     private int mViewHolderCount = 0;
 
-    public NumFragment4Adapter(FragmentManager manager) {
+    public NumFragment5Adapter(FragmentManager manager) {
         mFragmentManager = manager;
 
         for (int i = 0; i < COUNT; i++) {
@@ -50,12 +52,10 @@ public class NumFragment4Adapter extends NumFragmentBaseAdapter {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
 
-        innerContainer.setMinimumHeight(100);
+        // innerContainer.setMinimumHeight(100);
         innerContainer.setId(View.generateViewId());
 
         rootContainer.addView(innerContainer);
-//        NumberFragment fragment = new NumberFragment();
-//        view.setTag(fragment);
 
         notifyViewHolderCreate(viewType);
         notifyViewHolderCountChanged(mViewHolderCount);
@@ -66,8 +66,6 @@ public class NumFragment4Adapter extends NumFragmentBaseAdapter {
     @Override
     public void onBindViewHolder(NumberViewHolder holder, int position) {
         NumberFragment numberFragment = mNumFragments.get(position);
-        // NumberFragment numberFragment = (NumberFragment) holder.itemView.getTag();
-        // numberFragment.setNumber(String.valueOf(position));
         holder.itemView.setTag(numberFragment);
 
         Log.e(TAG, "fragment: #" + numberFragment.getNumber() + " isAdded " + numberFragment.isAdded());
@@ -75,7 +73,9 @@ public class NumFragment4Adapter extends NumFragmentBaseAdapter {
         Log.e(TAG, "fragment #" + numberFragment.getNumber() + " isInLayout " + numberFragment.isInLayout());
 
         if (!numberFragment.isAdded()) {
-            mFragmentManager.beginTransaction().replace(holder.fragmentContainer.getId(), numberFragment).commit();
+            mFragmentManager.beginTransaction()
+                            .replace(holder.fragmentContainer.getId(), numberFragment)
+                            .commit();
         }
 
         if (mFragmentManager.getFragments() == null) {
@@ -101,26 +101,58 @@ public class NumFragment4Adapter extends NumFragmentBaseAdapter {
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isAdded " + fragment.isAdded());
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isDetached " + fragment.isDetached());
             Log.e(TAG, "&&& #" + fragment.getNumber() + " isInLayout " + fragment.isInLayout());
+
+            if (fragment.isAdded()) {
+                mFragmentManager.beginTransaction().remove(fragment).commit();
+            }
         }
     }
 
-    public NumberFragment getFragment(int position) {
-        return mNumFragments.get(position);
+    public void resetAdapter(int size) {
+        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        for(NumberFragment fragment : mNumFragments) {
+            if (fragment.isAdded()) {
+                transaction.remove(fragment);
+            }
+        }
+
+        transaction.commit();
+
+        // mRemoveFragments.addAll(mNumFragments);
+
+        mNumFragments.clear();
+
+        notifyDataSetChanged();
+        mViewHolderCount = 0;
+
+        for (int i = 0; i < size; i++) {
+            mNumFragments.add(NumberFragment.newInstance("new " + size + " - " + i));
+        }
+
+        notifyDataSetChanged();
     }
 
-    public void addFragment(int position) {
-        mNumFragments.add(position, NumberFragment.newInstance("new Added: " + position));
-        notifyItemInserted(position);
-    }
-
-    public void removeFragment(int position) {
-        mNumFragments.remove(position);
-        notifyItemRemoved(position);
+    public void checkFragments() {
+//        mFragmentManager.popBackStack();
+//        FragmentTransaction transaction = mFragmentManager.beginTransaction();
+//        for (NumberFragment fragment : mRemoveFragments) {
+//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isAdded " + fragment.isAdded());
+//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isRemoving " + fragment.isRemoving());
+//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isInLayout " + fragment.isInLayout());
+//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isVisible " + fragment.isVisible());
+//
+//            if (fragment.isAdded()) {
+//                transaction.remove(fragment);
+//            }
+//        }
+//        transaction.commitAllowingStateLoss();
 
         if (mFragmentManager.getFragments() == null) {
             notifyAttachedFragmentChanged(0);
         } else {
             notifyAttachedFragmentChanged(mFragmentManager.getFragments().size());
         }
+
+        notifyViewHolderCountChanged(mViewHolderCount);
     }
 }
