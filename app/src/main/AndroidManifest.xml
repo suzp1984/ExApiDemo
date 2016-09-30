@@ -165,6 +165,19 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".app.menu.MenuInflateActivity"
+            android:exported="false"
+            android:label="app/menu/MenuInflate"
+            android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

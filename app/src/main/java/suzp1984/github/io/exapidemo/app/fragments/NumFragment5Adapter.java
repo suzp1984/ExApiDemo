@@ -24,7 +24,6 @@ public class NumFragment5Adapter extends NumFragmentBaseAdapter {
     private final FragmentManager mFragmentManager;
     private final int COUNT = 100;
     private final List<NumberFragment> mNumFragments = new LinkedList<>();
-    private final List<NumberFragment> mRemoveFragments = new LinkedList<>();
 
     private int mViewHolderCount = 0;
 
@@ -118,8 +117,6 @@ public class NumFragment5Adapter extends NumFragmentBaseAdapter {
 
         transaction.commit();
 
-        // mRemoveFragments.addAll(mNumFragments);
-
         mNumFragments.clear();
 
         notifyDataSetChanged();
@@ -133,19 +130,6 @@ public class NumFragment5Adapter extends NumFragmentBaseAdapter {
     }
 
     public void checkFragments() {
-//        mFragmentManager.popBackStack();
-//        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-//        for (NumberFragment fragment : mRemoveFragments) {
-//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isAdded " + fragment.isAdded());
-//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isRemoving " + fragment.isRemoving());
-//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isInLayout " + fragment.isInLayout());
-//            Log.e(TAG, "&&& #" + fragment.getNumber() + " isVisible " + fragment.isVisible());
-//
-//            if (fragment.isAdded()) {
-//                transaction.remove(fragment);
-//            }
-//        }
-//        transaction.commitAllowingStateLoss();
 
         if (mFragmentManager.getFragments() == null) {
             notifyAttachedFragmentChanged(0);
