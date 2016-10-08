@@ -55,12 +55,24 @@ public class MenuInflateActivity extends AppCompatActivity {
         int size = mNavMenu.size();
         for (int i = 0; i < size; i++) {
             MenuItem item = mNavMenu.getItem(i);
-            if (item.hasSubMenu()) {
-                SubMenu subMenu = item.getSubMenu();
-
+            Log.e(TAG, "* " + item.getTitle() + ".");
+            if (item.getIcon() != null) {
+                Log.e(TAG, " --" + item.getIcon().toString());
             }
 
-            Log.e(TAG, (String) item.getTitle());
+            if (item.hasSubMenu()) {
+                SubMenu subMenu = item.getSubMenu();
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem sub = subMenu.getItem(j);
+                    Log.e(TAG, "    " + sub.getTitle().toString());
+                    if (sub.getIcon() != null) {
+                        Log.e(TAG, "    --" + sub.getIcon().toString());
+                    }
+                }
+
+                continue;
+            }
+
         }
     }
     
