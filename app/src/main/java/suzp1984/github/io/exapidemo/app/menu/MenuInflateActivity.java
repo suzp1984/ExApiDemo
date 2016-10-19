@@ -3,7 +3,6 @@ package suzp1984.github.io.exapidemo.app.menu;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenu;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,7 +22,7 @@ public class MenuInflateActivity extends AppCompatActivity {
 
     private final String TAG = MenuInflateActivity.class.getName();
 
-    @BindView(R.id.recycler)
+    @BindView(R.id.recyclor)
     RecyclerView mRecycler;
 
     private NavigationMenu mNavMenu;

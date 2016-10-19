@@ -3,7 +3,6 @@ package suzp1984.github.io.exapidemo.widget.recycler;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,7 +14,7 @@ import suzp1984.github.io.exapidemo.R;
 
 public class CustomScrollbarActivity extends AppCompatActivity {
 
-    @BindView(R.id.recycler)
+    @BindView(R.id.recyclor)
     RecyclerView mRecycler;
 
     @Override

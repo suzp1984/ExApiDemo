@@ -1,19 +1,23 @@
 package suzp1984.github.io.exapidemo.app.fragments;
 
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import suzp1984.github.io.exapidemo.R;
 
-public abstract class FragmentInRecyclerActivity extends AppCompatActivity {
+/**
+ * Created by suzhenxi on 10/19/2016.
+ */
 
-    @BindView(R.id.recycler)
-    RecyclerView mRecycler;
+public abstract class FragmentInListViewActivity extends AppCompatActivity {
+
+    @BindView(R.id.listview)
+    ListView mListView;
 
     @BindView(R.id.viewholder_count)
     TextView mViewHolderCount;
@@ -30,12 +34,12 @@ public abstract class FragmentInRecyclerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment_in_recycler);
 
+        setContentView(R.layout.activity_fragment_in_listview);
         ButterKnife.bind(this);
 
-        setupRecycler();
+        setupListView();
     }
 
-    protected abstract void setupRecycler();
+    protected abstract void setupListView();
 }
