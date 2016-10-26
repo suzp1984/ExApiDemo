@@ -50,10 +50,12 @@ public class MemoryCheckActivity extends AppCompatActivity {
     @OnClick(R.id.runtime_check)
     public void onRuntimeCheck() {
         final Runtime runtime = Runtime.getRuntime();
-        long m = runtime.freeMemory();
+        long free = runtime.freeMemory();
         long max = runtime.maxMemory();
-        
-        mMemoryTxt.setText("free: " + String.valueOf(m) + "K = " + m/1024L/1024L + "M; "
+        long total = runtime.totalMemory();
+
+        mMemoryTxt.setText("free: " + String.valueOf(free) + "K = " + free/1024L/1024L + "M; "
+                            + "total: " + String.valueOf(total) + "K = " + total/1024L/1024L + "M;"
                             + "whole: " + String.valueOf(max) + "K = " + max/1024L/1024L + "M;");
 
     }
