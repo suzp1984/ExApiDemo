@@ -205,8 +205,29 @@
         <activity
             android:name=".app.fragments.ListViewSample1Activity"
             android:exported="false"
-            android:label="app/fragments/listview 1"
-            android:theme="@style/NoActionBar">
+            android:label="app/fragments/listview 1" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".app.fragments.ListViewSample2Activity"
+            android:exported="false"
+            android:label="app/fragments/listview 2" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".app.system.MemoryCheckActivity"
+            android:exported="false"
+            android:label="app/system/memory" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
