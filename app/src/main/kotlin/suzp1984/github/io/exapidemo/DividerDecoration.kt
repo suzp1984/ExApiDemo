@@ -17,7 +17,7 @@ class DividerDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private val mInsets: Int
 
     init {
-        val a = context.obtainStyledAttributes(ATTRS)
+        val a = context.obtainStyledAttributes(intArrayOf(android.R.attr.listDivider))
         mDivider = a.getDrawable(0)
         a.recycle()
 
@@ -50,7 +50,4 @@ class DividerDecoration(context: Context) : RecyclerView.ItemDecoration() {
         outRect.set(mInsets, mInsets, mInsets, mInsets)
     }
 
-    companion object {
-        private val ATTRS = intArrayOf(android.R.attr.listDivider)
-    }
 }
