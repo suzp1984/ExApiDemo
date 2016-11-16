@@ -227,7 +227,18 @@
         <activity
             android:name=".app.system.MemoryCheckActivity"
             android:exported="false"
-            android:label="app/system/memory" >
+            android:label="app/system/check memory" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".app.system.RuntimeMemoryActivity"
+            android:exported="false"
+            android:label="app/system/memory allocation" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
