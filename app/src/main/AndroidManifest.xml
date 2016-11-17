@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="suzp1984.github.io.exapidemo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".ExApp"
         android:allowBackup="true"
@@ -46,7 +51,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.MandelbrotActivity"
             android:exported="false"
@@ -57,7 +61,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.MartinViewActivity"
             android:exported="false"
@@ -68,7 +71,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.KastenViewActivity"
             android:exported="false"
@@ -79,7 +81,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.ManuelKastenViewActivity"
             android:exported="false"
@@ -90,7 +91,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.PhagocyteViewActivity"
             android:exported="false"
@@ -101,8 +101,8 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.fragments.FragmentSample1Activity"
+        <activity
+            android:name=".app.fragments.FragmentSample1Activity"
             android:exported="false"
             android:label="app/fragments/Fragments 1 in RecyclerView">
             <intent-filter>
@@ -131,7 +131,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.fragments.FragmentSample4Activity"
             android:exported="false"
@@ -142,7 +141,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.fragments.FragmentSample5Activity"
             android:exported="false"
@@ -153,7 +151,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.design.NavgationViewActivity"
             android:exported="false"
@@ -165,7 +162,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.menu.MenuInflateActivity"
             android:exported="false"
@@ -177,7 +173,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.nav.CustomDrawerActivity"
             android:exported="false"
@@ -189,7 +184,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".widget.recycler.CustomScrollbarActivity"
             android:exported="false"
@@ -201,51 +195,56 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.fragments.ListViewSample1Activity"
             android:exported="false"
-            android:label="app/fragments/listview 1" >
+            android:label="app/fragments/listview 1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.fragments.ListViewSample2Activity"
             android:exported="false"
-            android:label="app/fragments/listview 2" >
+            android:label="app/fragments/listview 2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.system.MemoryCheckActivity"
             android:exported="false"
-            android:label="app/system/check memory" >
+            android:label="app/system/check memory">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".app.system.RuntimeMemoryActivity"
             android:exported="false"
-            android:label="app/system/memory allocation" >
+            android:label="app/system/memory allocation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".system.WifiStateActivity"
+            android:exported="false"
+            android:label="system/wifi" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
