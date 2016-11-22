@@ -238,7 +238,19 @@
         <activity
             android:name=".system.WifiStateActivity"
             android:exported="false"
-            android:label="system/wifi" >
+            android:label="system/wifi">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".system.db.SqliteDbSampleActivity"
+            android:exported="false"
+            android:label="system/sqlite"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

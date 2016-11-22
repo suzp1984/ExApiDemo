@@ -10,5 +10,5 @@ interface IStudentDatabase {
     fun update(old: Student, newStudent: Student)
     fun getStudents() : List<Student>
     fun getStudentsCount() : Int
-    fun getSudent(i : Int) : Student
+    fun getSudent(i : Int) : Student?
 }
