@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import org.jetbrains.anko.*
 
@@ -47,11 +48,12 @@ class AnkoMemoryCheckActivity : AppCompatActivity() {
     class AnkoMemoryCheckUI : AnkoComponent<AnkoMemoryCheckActivity> {
 
         lateinit var txtView : TextView
+        lateinit var activityMemoryButton : Button
 
         override fun createView(ui: AnkoContext<AnkoMemoryCheckActivity>): View = with(ui) {
             relativeLayout {
 
-                val activityMemoryButton = button("activity manager check") {
+                activityMemoryButton = button("activity manager check") {
                             onClick { ui.owner.onActivityManagerMemory() }
                         }.lparams(width = matchParent, height = wrapContent) {
                             alignParentTop()
