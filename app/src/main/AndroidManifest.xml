@@ -235,6 +235,15 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
+        <activity android:name=".app.system.AnkoMemoryCheckActivity"
+            android:exported="false"
+            android:label="app/system/Anko UI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".system.WifiStateActivity"
             android:exported="false"
@@ -257,6 +266,7 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

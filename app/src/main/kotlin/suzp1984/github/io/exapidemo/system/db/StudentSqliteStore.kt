@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 import java.util.*
+import kotlin.properties.Delegates
 
 /**
  * Created by suzhenxi on 11/22/2016.
