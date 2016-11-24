@@ -25,6 +25,14 @@ android {
     }
 }
 
+task printVariantNames {
+    doLast {
+        android.applicationVariants.all { variant ->
+            println variant.name
+        }
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.1'
