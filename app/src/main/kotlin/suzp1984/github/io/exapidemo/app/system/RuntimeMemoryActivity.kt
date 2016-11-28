@@ -57,20 +57,28 @@ class RuntimeMemoryActivity : AppCompatActivity() {
         val runtime = Runtime.getRuntime()
         val remain = runtime.maxMemory() - runtime.totalMemory()
 
-        val block = ByteArray(remain.toInt())
+        try {
+            val block = ByteArray(remain.toInt())
 
-        mArrays.add(block)
+            mArrays.add(block)
 
-        runtimeCheck()
+            runtimeCheck()
+        } catch (e: OutOfMemoryError) {
+            e.printStackTrace()
+        }
     }
 
     @OnClick(R.id.allocate_20_memory)
     fun allocate20Memory() {
 
-        val twn = ByteArray((1024L * 1024L * 20).toInt())
+        try {
+            val twn = ByteArray((1024L * 1024L * 20).toInt())
 
-        mArrays.add(twn)
+            mArrays.add(twn)
 
-        runtimeCheck()
+            runtimeCheck()
+        } catch (e: OutOfMemoryError) {
+            e.printStackTrace()
+        }
     }
 }
