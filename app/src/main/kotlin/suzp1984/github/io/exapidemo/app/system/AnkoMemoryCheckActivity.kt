@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import org.jetbrains.anko.*
+import suzp1984.github.io.exapidemo.R
 
 /**
  * Created by suzhenxi on 11/23/2016.
@@ -51,21 +52,24 @@ class AnkoMemoryCheckActivity : AppCompatActivity() {
         lateinit var activityMemoryButton : Button
 
         override fun createView(ui: AnkoContext<AnkoMemoryCheckActivity>): View = with(ui) {
+            val ID_ACTIVITY_MEMORY = 1
+
             relativeLayout {
 
                 activityMemoryButton = button("activity manager check") {
-                            onClick { ui.owner.onActivityManagerMemory() }
-                        }.lparams(width = matchParent, height = wrapContent) {
-                            alignParentTop()
-                            topMargin = dip(40)
-                            leftMargin = dip(20)
-                            rightMargin = dip(20)
-                            bottomMargin = dip(10)
-                        }
+                    id = ID_ACTIVITY_MEMORY
+                    onClick { ui.owner.onActivityManagerMemory() }
+                }.lparams(width = matchParent) {
+                    alignParentTop()
+                    topMargin = dip(40)
+                    leftMargin = dip(20)
+                    rightMargin = dip(20)
+                    bottomMargin = dip(10)
+                }
 
-                val runtimeMemoryButton = button("runtime check") {
+                button("runtime check") {
                     onClick { ui.owner.onRuntimeCheck() }
-                }.lparams(width = matchParent, height = wrapContent) {
+                }.lparams(width = matchParent) {
                     below(activityMemoryButton)
                     topMargin = dip(10)
                     leftMargin = dip(20)
@@ -73,7 +77,9 @@ class AnkoMemoryCheckActivity : AppCompatActivity() {
                     bottomMargin = dip(10)
                 }
 
-                txtView = textView {  }.lparams(width = matchParent, height = wrapContent) {
+                txtView = textView {
+
+                }.lparams(width = matchParent) {
                     alignParentBottom()
                 }
             }
