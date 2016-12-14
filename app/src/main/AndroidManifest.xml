@@ -291,6 +291,25 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".system.file.FileObserverDemoActivity"
+            android:exported="false"
+            android:label="system/file/file observer"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".system.file.FileObserverDemoService"
+            android:enabled="true"
+            android:exported="false">
+
+        </service>
+
     </application>
 
 </manifest>
