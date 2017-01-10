@@ -228,9 +228,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".app.system.MemoryCheckActivity"
+            android:name=".system.runtime.MemoryCheckActivity"
             android:exported="false"
-            android:label="app/system/check memory">
+            android:label="system/runtime/check memory">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -238,18 +238,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".app.system.RuntimeMemoryActivity"
+            android:name=".system.runtime.RuntimeMemoryActivity"
             android:exported="false"
-            android:label="app/system/memory allocation">
+            android:label="system/runtime/memory allocation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.system.AnkoMemoryCheckActivity"
+        <activity android:name=".system.runtime.AnkoMemoryCheckActivity"
             android:exported="false"
-            android:label="app/system/Anko UI">
+            android:label="system/runtime/Anko UI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -260,6 +260,17 @@
             android:name=".system.WifiStateActivity"
             android:exported="false"
             android:label="system/wifi">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".system.ConnectivityStateActivity"
+            android:exported="false"
+            android:label="system/connection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package suzp1984.github.io.exapidemo.app.system
+package suzp1984.github.io.exapidemo.system.runtime
 
 import android.app.ActivityManager
 import android.content.Context

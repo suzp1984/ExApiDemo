@@ -1,11 +1,14 @@
 package suzp1984.github.io.exapidemo.system
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.wifi.ScanResult
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.telecom.ConnectionService
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -22,8 +25,8 @@ class WifiStateActivity : AppCompatActivity() {
     @BindView(R.id.wifi_result)
     lateinit var wifiResult : TextView
 
-
     lateinit var wifiManager : WifiManager
+    lateinit var connectMgr : ConnectivityManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +35,7 @@ class WifiStateActivity : AppCompatActivity() {
         ButterKnife.bind(this)
 
         wifiManager = getSystemService(Context.WIFI_SERVICE) as WifiManager
-
+        connectMgr  = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
     @OnClick(R.id.wifi_info)
@@ -72,5 +75,15 @@ class WifiStateActivity : AppCompatActivity() {
                     "protocols: ${conf.allowedProtocols}; + enterpriseConfig: ${conf.enterpriseConfig}; all: ${conf}")
         }
 
+    }
+
+    @OnClick(R.id.connection_info)
+    fun getConnectionInfo() {
+        val networkInfo : NetworkInfo? = connectMgr.activeNetworkInfo
+        if (networkInfo != null) {
+            wifiResult.setText("${networkInfo.typeName} : ${networkInfo.typeName} (${networkInfo.type})")
+        } else {
+            wifiResult.setText("NULL")
+        }
     }
 }
