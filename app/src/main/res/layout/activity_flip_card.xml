@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="suzp1984.github.io.exapidemo.animation.FlipCardActivity">
+
+    <View
+        android:id="@+id/flip_card"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/colorAccent"
+        />
+
+    <Button
+        android:id="@+id/animation_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animation 1"
+        android:layout_marginLeft="29dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
+
+
+    <Button
+        android:id="@+id/animation_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animation 2"
+        app:layout_constraintLeft_toRightOf="@+id/animation_one"
+        android:layout_marginLeft="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/animator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animator"
+        app:layout_constraintLeft_toRightOf="@+id/animation_two"
+        android:layout_marginLeft="9dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp" />
+
+</android.support.constraint.ConstraintLayout>

@@ -31,7 +31,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".layout.AnkoRelativeActivity"
             android:exported="false"
@@ -42,7 +41,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".graphics.StarsActivity"
             android:exported="false"
@@ -247,7 +245,8 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-        <activity android:name=".system.runtime.AnkoMemoryCheckActivity"
+        <activity
+            android:name=".system.runtime.AnkoMemoryCheckActivity"
             android:exported="false"
             android:label="system/runtime/Anko UI">
             <intent-filter>
@@ -266,7 +265,6 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".system.ConnectivityStateActivity"
             android:exported="false"
@@ -277,36 +275,30 @@
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".system.db.SqliteDbSampleActivity"
             android:exported="false"
-            android:label="system/sqlite"
-            >
+            android:label="system/sqlite">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".system.SystemReportActivity"
             android:exported="false"
-            android:label="system/report"
-            >
+            android:label="system/report">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="suzp1984.github.io.exapidemo.samplecode" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".system.file.FileObserverDemoActivity"
             android:exported="false"
-            android:label="system/file/file observer"
-            >
+            android:label="system/file/file observer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -317,10 +309,17 @@
         <service
             android:name=".system.file.FileObserverDemoService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false"></service>
 
-        </service>
+        <activity android:name=".animation.FlipCardActivity"
+            android:exported="false"
+            android:label="animation/card flip" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="suzp1984.github.io.exapidemo.samplecode" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
