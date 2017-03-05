@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
-import android.view.animation.RotateAnimation
 import android.widget.Button
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -20,11 +19,8 @@ class FlipCardActivity : AppCompatActivity() {
     @BindView(R.id.flip_card)
     internal lateinit var flipCardView : View
 
-    @BindView(R.id.animation_one)
-    internal lateinit var animationOneBtn : Button
-
-    @BindView(R.id.animation_two)
-    internal lateinit var animationTwoBtn : Button
+    @BindView(R.id.animation)
+    internal lateinit var animationBtn: Button
 
     @BindView(R.id.animator)
     internal lateinit var animatorBtn : Button
@@ -59,8 +55,8 @@ class FlipCardActivity : AppCompatActivity() {
         this.animator = animator
     }
 
-    @OnClick(R.id.animation_one)
-    fun animationOne() {
+    @OnClick(R.id.animation)
+    fun animationClick() {
         var startAngor : Float = 0.0f
         var endAngor   : Float = 90.0f
         if (!toggle) {
@@ -78,7 +74,6 @@ class FlipCardActivity : AppCompatActivity() {
         animation.fillAfter = true
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationRepeat(animation: Animation?) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onAnimationEnd(animation: Animation?) {
@@ -91,7 +86,6 @@ class FlipCardActivity : AppCompatActivity() {
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
         })
@@ -102,4 +96,5 @@ class FlipCardActivity : AppCompatActivity() {
     fun stopAnimator() {
         animator?.end()
     }
+
 }
